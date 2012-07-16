@@ -1,0 +1,28 @@
+extends layout
+
+block mainContent
+
+  p= note
+  div#commands
+    button(onclick="beginUpload()") Create
+  div#precis
+  div#dropzone
+    ul(id="target", class="clearfix") 
+  footer
+    div#links
+    a(href="http://github.com/devmikey") Code on Github| 
+    a(href="http://devmikey.wordpress.com") Blog   
+    // include default scripts and any view scripts
+  - each s in scripts
+      script(src=s)
+  script
+    Modernizr.addTest('filereader', function() {
+      return typeof window.FileReader === "function";
+    });
+
+    if(Modernizr.localstorage && JSON && Modernizr.filereader && Modernizr.draganddrop) {
+      DropUp.init();
+    } else {
+      var msg = "<p>Sorry, dropup uses new web technologies that are <br />" + "only currently supported by firefox 3.6+. :(</p>";
+      $("#dropzone").html(msg).addClass("inactive");
+    }

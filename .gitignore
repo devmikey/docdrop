@@ -1,0 +1,6 @@
+node.dropup.js.logs
+server.js.logs
+node_modules
+server.js.debug
+settings.json
+web.config

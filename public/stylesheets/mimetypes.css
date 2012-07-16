@@ -1,0 +1,31 @@
+.dragme {
+	background: #2C7AD0;
+	color: #fff;
+	padding: 10px;
+	display: block;
+	float: left;
+	margin: 1px;
+	
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border-radius: 5px;
+}
+
+
+.mimeUnknown {
+background:url(/images/document.png) no-repeat;
+padding:0px 50px 50px 50px;
+white-space:nowrap;
+}
+
+.jpg, .bmp, .gif, .png, .tif {
+background:url(/images/image.png) no-repeat;
+}
+
+.pdf {
+background:url(/images/pdf_icon.png) no-repeat;
+}
+
+.precisdetails {
+  padding: 5px;    
+}

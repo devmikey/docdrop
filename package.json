@@ -1,0 +1,29 @@
+{
+  "name": "docdrop",
+  "version": "0.1.0-10",
+  "author": "devmikey <devmikey.js@gmail.com>",
+  "description": "A demonstration application for Jigsaw. Drop documents and automatically send to an ITK Host",
+  "contributors": [],
+  "main": "./server.js",
+  "keywords": [
+    "jigsaw",
+    "itk",
+    "clinical correspondence"
+  ],
+  "dependencies": {
+    "connect": ">= 1.8.6",
+    "express": ">= 2.5.9",
+    "jade": ">= 0.22.0",
+    "jigsaw": "git://github.com/devmikey/Jigsaw.git"
+  },
+  "devDependencies": [],
+  "license": "MIT",
+  "engines": {
+    "node": ">= 0.6"
+  },
+  "private": true,
+  "subdomain": "devmikey.docdrop",
+  "scripts": {
+    "start": "server.js"
+  }
+}
