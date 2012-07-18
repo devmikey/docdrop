@@ -1,13 +1,14 @@
 var fs = require('fs');
 var itkclient = require('../lib/itkservice');
-/*
 
+/*
 * This module is is responsible for handling the home page routes, including displaying the upload box and handling file uploads
 */
 
 // event handler triggered once the manifest has been built
 var manifestLoaded = function(manifestItem, res){
     itkclient.send(manifestItem, function(ctx) {
+		console.log("jigsaw responded " +ctx.response );
         res.send(manifestItem[0].filename);
     });     
 }
@@ -33,17 +34,17 @@ module.exports = function(app) {
 
     // home page
     app.get("/", function(req, res) {
-        res.render('index', { title: 'Rapid Discharge',
-            note: 'Drag and Drop a file and start building a discharge letter',
+        res.render('index', { title: 'Doc Drop',
+            note: 'Docs on the move need Doc Drop, drop a document and go',
             layout: 'layout',
             scripts: ['/scripts/jquery-1.7.min.js', '/scripts/modernizr-1.5.min.js', '/scripts/client.dropup.js']
         });
     });
 
     app.post("/upload", function(req, res) {
-        // get the temporary location of the file
 
-        var uploaded = req.files;
+        // get the temporary location of the file
+		var uploaded = req.files;
         var manifestArray = new Array();
         var manifestItem = new Array();
         for(fileref in uploaded) {
@@ -55,9 +56,10 @@ module.exports = function(app) {
                 manifestLoaded(manifestItem, res);
             } else {
                 file = manifestArray[index];
-                target_path = './documents/' + file.name;
+                target_path = __dirname + '/../documents/' + file.name;
                 tmp_path = file.path;
                 console.log('renaming ' + tmp_path + ' to ' +target_path)
+				
                 fs.rename(tmp_path, target_path, function(error) {
                     if(error) {
                         console.log("Error renaming file. ", error);
@@ -68,6 +70,7 @@ module.exports = function(app) {
                                 console.log("Error reading file. ", error);
                                 throw error;
                             } else {
+								console.log('adding file to manifest')
                                 manifestItem.push(attachment);
                                 renameFiles(index + 1);
                             }
@@ -76,9 +79,7 @@ module.exports = function(app) {
                 });
             }
         }
-
         renameFiles(0);
-
     });  // end of app.post('/upload
 
 } // end of export

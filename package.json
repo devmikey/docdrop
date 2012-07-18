@@ -1,6 +1,6 @@
 {
   "name": "docdrop",
-  "version": "0.1.0-10",
+  "version": "0.1.0-19",
   "author": "devmikey <devmikey.js@gmail.com>",
   "description": "A demonstration application for Jigsaw. Drop documents and automatically send to an ITK Host",
   "contributors": [],
